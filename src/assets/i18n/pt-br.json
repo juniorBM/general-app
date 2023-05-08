@@ -1,0 +1,9 @@
+{
+  "common": {
+    "formFields": {
+      "email": "E-mail",
+      "password": "Senha"
+    },
+    "toEnter": "Entrar"
+  }
+}

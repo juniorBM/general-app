@@ -1,0 +1,52 @@
+<div class="flex justify-content-center pt-5">
+  <h1>{{ (user$ | async)?.name }}</h1>
+  <p-card header="Login" subheader="Entre com seu e-mail e senha" [style]="{ width: '360px' }">
+    <form [formGroup]="form">
+      <div class="field">
+        <label for="email">{{ 'common.formFields.email' | transloco }}</label>
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-user"></i>
+          <input formControlName="email" id="email" type="text" pInputText class="w-full" />
+        </span>
+        <small class="danger font-bold" *ngFor="let error of formErrors['email']">
+          <ng-container [ngSwitch]="error">
+            <ng-container
+              *ngSwitchCase="'required'"
+              [ngTemplateOutlet]="emailRequired"
+            ></ng-container>
+            <ng-container *ngSwitchCase="'email'" [ngTemplateOutlet]="emailValid"></ng-container>
+            <ng-template #emailRequired>E-mail é obrigatório</ng-template>
+            <ng-template #emailValid>E-mail nao é valido</ng-template>
+          </ng-container>
+        </small>
+      </div>
+      <div class="field">
+        <label for="email">{{ 'common.formFields.password' | transloco }}</label>
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-lock"></i>
+          <input
+            formControlName="password"
+            id="password"
+            type="password"
+            pInputText
+            class="w-full"
+          />
+        </span>
+        <small class="danger font-bold"  *ngFor="let error of formErrors['password']">
+          <ng-container [ngSwitch]="error">
+            <ng-container
+              *ngSwitchCase="'required'"
+              [ngTemplateOutlet]="passwordRequired"
+            ></ng-container>
+            <ng-template #passwordRequired>Senha é obrigatório</ng-template>
+          </ng-container>
+        </small>
+      </div>
+    </form>
+    <ng-template pTemplate="footer" class="teste">
+      <div class="text-center">
+        <p-button [label]="'common.toEnter' | transloco" (click)="onSubmit(form)"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
